@@ -1,0 +1,69 @@
+﻿<Window x:Class="TestStand1._0.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TestStand1._0"
+        xmlns:oxy="http://oxyplot.org/wpf"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="600" Width="1000" SizeChanged="Window_SizeChanged" MinHeight="300" MinWidth="500" Closing="Window_Closing">
+    <Window.Resources>
+        <Style x:Key="SettingsButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="Grid.Row" Value="0"/>
+            <Setter Property="Grid.Column" Value="0"/>
+            <Setter Property="MaxHeight" Value="85"/>
+            <Setter Property="MaxWidth" Value="85"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="Transparent"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                        <ContentPresenter x:Name="contentPresenter"
+                                          Content="{TemplateBinding Content}"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="5*"/>
+            <ColumnDefinition Width="2*"/>
+        </Grid.ColumnDefinitions>
+
+        <Button x:Name="SettingsButton" Click="SettingsButton_Click" Style="{StaticResource SettingsButtonStyle}">
+            <Image Source="images/setting.png" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+        </Button>
+        <Button x:Name="StartResearch" Click="StartResearch_Click" Grid.Row="0" Grid.Column="0" VerticalAlignment="Top" HorizontalAlignment="Center" Content="Начать исследование" FontSize="20" MaxHeight="80" MaxWidth="800" Grid.ColumnSpan="3"/>
+        <oxy:PlotView Model="{Binding MyModel}" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+        <Grid Grid.Row="1" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Top">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition x:Name="column1" Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <Label x:Name="ForceLabel" Content="Нагрузка : " FontSize="20" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center" MinHeight="10" MinWidth="50"/>
+            <TextBox x:Name="ForceTextBox" FontSize="12" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" MinHeight="10" MinWidth="50" MaxHeight="40" MaxWidth="500"/>
+            <Button x:Name="ForceButton" Content="ОК" Grid.Row="0" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" MinHeight="10" MinWidth="20" MaxHeight="40" MaxWidth="100"/>
+        </Grid>
+    </Grid>
+</Window>
